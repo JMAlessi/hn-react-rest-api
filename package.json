@@ -1,6 +1,7 @@
 {
   "name": "hn-react-app",
   "version": "0.1.0",
+  "homepage": "https://jmalessi.github.io/hn-react-app",
   "private": true,
   "dependencies": {
     "axios": "^0.19.2",
@@ -11,6 +12,7 @@
   },
   "devDependencies": {
     "@testing-library/react": "^9.1.3",
+    "gh-pages": "^2.2.0",
     "jest": "^25.1.0"
   },
   "jest": {
@@ -40,7 +42,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
