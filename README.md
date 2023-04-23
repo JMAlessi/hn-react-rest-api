@@ -1,6 +1,6 @@
 # HN-Rest-App
 
-A simple app that makes API calls.
+Currently under construction.
 
 ## Installation
 
