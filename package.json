@@ -1,64 +1,41 @@
 {
-  "name": "hn-react-app",
-  "version": "0.1.0",
-  "homepage": "https://jmalessi.github.io/hn-react-app",
-  "private": true,
-  "dependencies": {
-    "axios": "^0.21.2",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-scripts": "3.3.0",
-    "styled-components": "^5.0.0"
-  },
-  "devDependencies": {
-    "@testing-library/react": "^9.1.3",
-    "gh-pages": "^2.2.0",
-    "jest": "^25.1.0"
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.js",
-      "!src/index.js",
-      "!src/serviceWorker.js",
-      "!src/hooks/*.js",
-      "!src/selectors/*.js",
-      "!src/mappers/*.js",
-      "!src/utils/*.js"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 95,
-        "functions": 95,
-        "lines": 95,
-        "statements": 95
-      }
-    },
-    "coverageReporters": [
-      "html",
-      "text"
-    ]
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+	"name": "hn-react-app",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+		"@testing-library/jest-dom": "^5.16.5",
+		"axios": "^0.24.0",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
+		"react-scripts": "4.0.3",
+		"styled-components": "^5.3.1",
+		"uuid": "^3.4.0"
+	},
+	"devDependencies": {
+		"@testing-library/react": "^12.0.0",
+		"gh-pages": "^3.2.3"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d build"
+	},
+	"eslintConfig": {
+		"extends": "react-app"
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	}
 }
