@@ -44,13 +44,13 @@ describe('App', () => {
 		storyServiceMock.getTopStories.mockImplementation(() =>
 			Promise.resolve(storyIds)
 		);
-		const getStoryPromise = Promise.resolve({
+		const fetchStoryPromise = Promise.resolve({
 			...singularStory,
 		});
 
 		jest.spyOn(global, 'fetch').mockImplementation((url) => {
 			if (url.includes('1.json')) {
-				return getStoryPromise;
+				return fetchStoryPromise;
 			}
 		});
 
