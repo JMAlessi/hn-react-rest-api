@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Story from './Story';
-import { fetchStoryIds } from '../services/storyService';
 
 function StoryList({ storiesPerPage }) {
 	const [storyIds, setStoryIds] = useState([]);

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { StoryService } from './services/storyService';
-import { StoryList } from './components/StoryList';
+import storyService from './services/storyService';
+import StoryList from './components/StoryList';
 
-const storyService = new StoryService();
+const StoryService = new storyService();
 
 export const App = () => {
 	const [stories, setStories] = useState([]);
@@ -10,7 +10,7 @@ export const App = () => {
 	useEffect(() => {
 		const fetchStories = async () => {
 			try {
-				const data = await storyService.getTopStories();
+				const data = await StoryService.getTopStories();
 				setStories(data);
 			} catch (error) {
 				// handle error

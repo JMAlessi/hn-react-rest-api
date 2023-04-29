@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
 	StoryWrapper,
@@ -50,4 +50,4 @@ StoryService.propTypes = {
 	storyId: PropTypes.number.isRequired,
 };
 
-export default memo(StoryService);
+export default StoryService;
