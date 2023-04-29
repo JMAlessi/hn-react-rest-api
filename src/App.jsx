@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import storyService from './services/storyService';
+import StoryService from './services/StoryService';
 import StoryList from './components/StoryList';
 
-const StoryService = new storyService();
+StoryService = new StoryService();
 
 export const App = () => {
 	const [stories, setStories] = useState([]);

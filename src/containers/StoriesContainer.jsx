@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchStoryIds } from '../services/storyService';
+import { fetchStoryIds } from '../services/StoryService';
 import { Story } from '../components/Story';
 
 export const StoriesContainer = () => {
