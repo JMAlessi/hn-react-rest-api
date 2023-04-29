@@ -3,37 +3,29 @@
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
-		"@jridgewell/sourcemap-codec": "^1.4.15",
-		"@rollup/plugin-terser": "^0.4.1",
 		"@testing-library/jest-dom": "^5.16.5",
 		"axios": "^0.24.0",
 		"express": "^4.17.1",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
+		"react": "^18.0.0",
+		"react-dom": "^18.0.0",
 		"react-scripts": "5.0.1",
-		"styled-components": "^5.3.10",
-		"svgo": "^3.0.2",
-		"uuid": "^7.0.3"
+		"styled-components": "^5.3.10"
 	},
 	"devDependencies": {
 		"@testing-library/react": "^12.0.0",
-		"babel-cli": "^6.26.0",
 		"concurrently": "^7.0.0",
 		"gh-pages": "^3.2.3",
-		"kill-port": "^1.1.1",
 		"nodemon": "^2.0.15"
 	},
 	"scripts": {
-		"start": "concurrently \"npm run server\" \"npm run start\"",
+		"start": "concurrently \"npm run server\" \"npm run client\" --kill-others",
+		"client": "react-scripts start",
+		"server": "nodemon server.js",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"client-start": "react-scripts start",
-		"client-install": "npm install",
-		"server": "babel-node src/services/storyService.jsx",
 		"predeploy": "npm run build",
-		"deploy": "gh-pages -d build",
-		"nodemon": "nodemon src/services/storyService.jsx"
+		"deploy": "gh-pages -d build"
 	},
 	"eslintConfig": {
 		"extends": "react-app"
