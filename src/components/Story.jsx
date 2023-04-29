@@ -1,15 +1,15 @@
-import React, { useState, useEffect, memo } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { getStory } from '../services/hnApi.js';
+import { getStory } from '../services/storyService';
 import {
 	StoryWrapper,
 	StoryTitle,
 	StoryMeta,
 	StoryMetaElement,
-} from '../styles/StoryStyles.js';
-import { mapTime } from '../mappers/mapTime.js';
+} from '../styles/StoryStyles';
+import { mapTime } from '../mappers/mapTime';
 
-function Story({ storyId }) {
+const Story = ({ storyId }) => {
 	const [story, setStory] = useState({});
 
 	useEffect(() => {
@@ -45,10 +45,10 @@ function Story({ storyId }) {
 			</StoryMeta>
 		</StoryWrapper>
 	) : null;
-}
+};
 
 Story.propTypes = {
 	storyId: PropTypes.number.isRequired,
 };
 
-export default memo(Story);
+export default Story;
