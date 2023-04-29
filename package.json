@@ -3,23 +3,27 @@
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
+		"@jridgewell/sourcemap-codec": "^1.4.15",
+		"@rollup/plugin-terser": "^0.4.1",
 		"@testing-library/jest-dom": "^5.16.5",
 		"axios": "^0.24.0",
+		"express": "^4.17.1",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
 		"react-scripts": "5.0.1",
 		"styled-components": "^5.3.1",
-		"uuid": "^3.4.0",
-		"express": "^4.17.1"
+		"svgo": "^3.0.2",
+		"uuid": "^7.0.3"
 	},
 	"devDependencies": {
 		"@testing-library/react": "^12.0.0",
 		"concurrently": "^7.0.0",
-		"nodemon": "^2.0.15",
-		"gh-pages": "^3.2.3"
+		"gh-pages": "^3.2.3",
+		"kill-port": "^1.1.1",
+		"nodemon": "^2.0.15"
 	},
 	"scripts": {
-		"start": "concurrently \"npm run server\" \"npm run client\"",
+		"start": "kill-port 3000 && kill-port 5000 && concurrently \"npm run server\" \"npm run client\"",
 		"client": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
