@@ -9,19 +9,24 @@
 		"react-dom": "^17.0.2",
 		"react-scripts": "4.0.3",
 		"styled-components": "^5.3.1",
-		"uuid": "^3.4.0"
+		"uuid": "^3.4.0",
+		"express": "^4.17.1"
 	},
 	"devDependencies": {
 		"@testing-library/react": "^12.0.0",
+		"concurrently": "^7.0.0",
+		"nodemon": "^2.0.15",
 		"gh-pages": "^3.2.3"
 	},
 	"scripts": {
-		"start": "react-scripts start",
+		"start": "concurrently \"npm run server\" \"npm run client\"",
+		"client": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
 		"predeploy": "npm run build",
-		"deploy": "gh-pages -d build"
+		"deploy": "gh-pages -d build",
+		"server": "nodemon services/storyService.js"
 	},
 	"eslintConfig": {
 		"extends": "react-app"
