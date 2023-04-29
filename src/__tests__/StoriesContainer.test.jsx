@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, cleanup, waitFor } from '@testing-library/react';
-import { StoriesContainer } from '../containers/StoriesContainer';
 import { storyIds, singularStory } from '../fixtures';
 import { fetchStory, fetchStoryIds } from '../services/storyService';
 import { useInfiniteScroll } from '../hooks/useInfiniteScroll';
 import { STORY_INCREMENT } from '../constants';
+import { StoriesContainer } from '../services/storiesContainer';
 
 beforeEach(cleanup);
 
