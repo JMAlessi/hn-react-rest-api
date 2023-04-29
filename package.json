@@ -7,12 +7,11 @@
 		"@rollup/plugin-terser": "^0.4.1",
 		"@testing-library/jest-dom": "^5.16.5",
 		"axios": "^0.24.0",
-		"babel-node": "^0.0.1-security",
 		"express": "^4.17.1",
-		"react": "^17.0.2",
-		"react-dom": "^17.0.2",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
 		"react-scripts": "5.0.1",
-		"styled-components": "^5.3.1",
+		"styled-components": "^5.3.10",
 		"svgo": "^3.0.2",
 		"uuid": "^7.0.3"
 	},
@@ -25,16 +24,16 @@
 		"nodemon": "^2.0.15"
 	},
 	"scripts": {
-		"client-install": "npm install",
-		"start": "babel-node src/services/storyService.jsx",
-		"server": "nodemon src/services/storyService.jsx",
-		"dev": "concurrently \"npm run server\" \"npm run client\"",
-		"client": "react-scripts start",
+		"start": "concurrently \"npm run server\" \"npm run start\"",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
+		"client-start": "react-scripts start",
+		"client-install": "npm install",
+		"server": "babel-node src/services/storyService.jsx",
 		"predeploy": "npm run build",
-		"deploy": "gh-pages -d build"
+		"deploy": "gh-pages -d build",
+		"nodemon": "nodemon src/services/storyService.jsx"
 	},
 	"eslintConfig": {
 		"extends": "react-app"
