@@ -7,7 +7,7 @@ import {
 	StoryMetaElement,
 } from '../styles/StoryStyles';
 import { mapTime } from '../mappers/mapTime';
-import { getStory } from '../services/storyService';
+import { getStory } from './storyService';
 
 function StoryService({ storyId }) {
 	const [story, setStory] = useState({});
