@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Story from './Story';
-import { getStoryIds } from '../services/storyService';
+import { fetchStoryIds } from '../services/storyService';
 
 function StoryList({ storiesPerPage }) {
 	const [storyIds, setStoryIds] = useState([]);
 
 	useEffect(() => {
 		async function fetchStoryIds() {
-			const ids = await getStoryIds();
+			const ids = await fetchStoryIds();
 			setStoryIds(ids);
 		}
 		fetchStoryIds();

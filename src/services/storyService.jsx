@@ -7,14 +7,13 @@ import {
 	StoryMetaElement,
 } from '../styles/StoryStyles';
 import { mapTime } from '../mappers/mapTime';
-import { getStory } from './storyService';
 
 function StoryService({ storyId }) {
 	const [story, setStory] = useState({});
 
 	useEffect(() => {
 		async function fetchStory() {
-			const data = await getStory(storyId);
+			const data = await fetchStory(storyId);
 			if (data && data.url) {
 				setStory(data);
 			}

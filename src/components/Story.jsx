@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { getStory } from '../services/storyService';
 import {
 	StoryWrapper,
 	StoryTitle,
@@ -14,7 +13,7 @@ const Story = ({ storyId }) => {
 
 	useEffect(() => {
 		async function fetchStory() {
-			const data = await getStory(storyId);
+			const data = await fetchStory(storyId);
 			if (data && data.url) {
 				setStory(data);
 			}
