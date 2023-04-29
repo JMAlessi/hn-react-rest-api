@@ -27,7 +27,7 @@
 	"scripts": {
 		"client-install": "npm install",
 		"start": "babel-node src/services/storyService.jsx",
-		"server": "nodemon src/services/storyService.js",
+		"server": "nodemon src/services/storyService.jsx",
 		"dev": "concurrently \"npm run server\" \"npm run client\"",
 		"client": "react-scripts start",
 		"build": "react-scripts build",
