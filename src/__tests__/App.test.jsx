@@ -3,13 +3,13 @@ import { render, cleanup } from '@testing-library/react';
 import { App } from '../App';
 import { STORY_INCREMENT } from '../constants';
 import { useInfiniteScroll } from '../hooks/useInfiniteScroll';
-import { storyService } from '../services/storyService';
+import { StoryService } from '../services/StoryService';
 
 jest.mock('../hooks/useInfiniteScroll', () => ({
 	useInfiniteScroll: jest.fn(),
 }));
 
-jest.mock('../services/storyService');
+jest.mock('../services/StoryService');
 
 describe('App', () => {
 	let storyServiceMock;
@@ -22,7 +22,7 @@ describe('App', () => {
 			getTopStories: jest.fn(),
 		};
 
-		storyService.mockImplementation(() => storyServiceMock);
+		StoryService.mockImplementation(() => storyServiceMock);
 	});
 
 	it('renders the application', async () => {

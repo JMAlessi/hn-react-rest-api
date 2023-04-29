@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, cleanup, waitFor } from '@testing-library/react';
 import { storyIds, singularStory } from '../fixtures';
-import { fetchStory, fetchStoryIds } from '../services/storyService';
+import { fetchStory, fetchStoryIds } from '../services/StoryService';
 import { useInfiniteScroll } from '../hooks/useInfiniteScroll';
 import { STORY_INCREMENT } from '../constants';
 import { StoriesContainer } from '../services/storiesContainer';
@@ -10,7 +10,7 @@ beforeEach(cleanup);
 
 jest.mock('../hooks/useInfiniteScroll');
 
-jest.mock('../services/storyService', () => ({
+jest.mock('../services/StoryService', () => ({
 	fetchStory: jest.fn(),
 	fetchStoryIds: jest.fn(),
 }));

@@ -1,6 +1,6 @@
 const axios = require('axios');
 const supertest = require('supertest');
-const app = require('../services/storyService');
+const app = require('../services/StoryService');
 
 jest.mock('axios');
 

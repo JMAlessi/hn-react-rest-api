@@ -2,14 +2,14 @@ import React from 'react';
 import { render, cleanup, waitFor } from '@testing-library/react';
 import { Story } from '../components/Story';
 import { singularStory } from '../fixtures/index';
-import { fetchStory } from '../services/storyService';
+import { fetchStory } from '../services/StoryService';
 
 beforeEach(() => {
 	cleanup();
 	jest.resetAllMocks();
 });
 
-jest.mock('../services/storyService', () => ({
+jest.mock('../services/StoryService', () => ({
 	fetchStory: jest.fn(),
 }));
 
