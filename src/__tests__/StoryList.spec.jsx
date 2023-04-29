@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, cleanup, waitForElement } from '@testing-library/react';
-import StoryList from '../components/StoryList.js';
+import StoryList from '../components/StoryList';
 import { singularStory } from '../fixtures/index';
 import { getStoryIds, getStory } from '../services/storyService';
 

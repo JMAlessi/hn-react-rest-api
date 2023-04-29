@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup, waitForElement } from '@testing-library/react';
+import { render, cleanup, waitFor } from '@testing-library/react';
 import { StoriesContainer } from '../containers/StoriesContainer';
 import { storyIds, singularStory } from '../fixtures';
 import { getStory, getStoryIds } from '../services/storyService';
@@ -23,7 +23,7 @@ test('renders the story container with a story', async () => {
 	getStoryIds.mockImplementation(() => Promise.resolve(storyIds));
 
 	const { getByText, queryByTestId } = render(<StoriesContainer />);
-	await waitForElement(() => [
+	await waitFor(() => [
 		expect(getByText('Hacker News Stories')).toBeTruthy(),
 		expect(getByText('Tarnished: Google Responds')).toBeTruthy(),
 		expect(queryByTestId('story-by').textContent).toEqual('By: Karl Hadwen'),
