@@ -1,31 +1,25 @@
-export const mapTime = timestamp => {
-  const seconds = Math.floor((new Date() - timestamp * 1000) / 1000);
+export const mapTime = (timestamp) => {
+	const now = Date.now();
+	const seconds = Math.floor((now - timestamp) / 1000);
+	const timeIntervals = [
+		{ interval: 31536000, label: 'year' },
+		{ interval: 2592000, label: 'month' },
+		{ interval: 86400, label: 'day' },
+		{ interval: 3600, label: 'hour' },
+		{ interval: 60, label: 'minute' },
+		{ interval: 1, label: 'second' },
+	];
 
-  let interval = Math.floor(seconds / 31536000);
+	for (let i = 0; i < timeIntervals.length; i++) {
+		const { interval, label } = timeIntervals[i];
+		const intervalInSeconds = Math.floor(seconds / interval);
 
-  if (interval > 1) {
-    return `${interval} years`;
-  }
-  interval = Math.floor(seconds / 2592000);
+		if (intervalInSeconds > 1) {
+			return `${intervalInSeconds} ${label}${
+				intervalInSeconds !== 1 ? 's' : ''
+			} ago`;
+		}
+	}
 
-  if (interval > 1) {
-    return `${interval} months`;
-  }
-  interval = Math.floor(seconds / 86400);
-
-  if (interval > 1) {
-    return `${interval} days`;
-  }
-  interval = Math.floor(seconds / 3600);
-
-  if (interval > 1) {
-    return `${interval} hours`;
-  }
-  interval = Math.floor(seconds / 60);
-
-  if (interval > 1) {
-    return `${interval} minutes`;
-  }
-
-  return `${Math.floor(seconds)} seconds`;
+	return 'just now';
 };
