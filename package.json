@@ -23,14 +23,16 @@
 		"nodemon": "^2.0.15"
 	},
 	"scripts": {
-		"start": "kill-port 3000 && kill-port 5000 && concurrently \"npm run server\" \"npm run client\"",
+		"client-install": "npm install",
+		"start": "babel-node src/services/storyService.jsx",
+		"server": "nodemon src/services/storyService.js",
+		"dev": "concurrently \"npm run server\" \"npm run client\"",
 		"client": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
 		"predeploy": "npm run build",
-		"deploy": "gh-pages -d build",
-		"server": "nodemon services/storyService.js"
+		"deploy": "gh-pages -d build"
 	},
 	"eslintConfig": {
 		"extends": "react-app"
