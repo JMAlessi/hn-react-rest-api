@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import StoryService from './services/StoryService';
 import StoryList from './components/StoryList';
 
-StoryService = new StoryService();
+const storyService = new StoryService();
 
-export const App = () => {
+const App = () => {
 	const [stories, setStories] = useState([]);
 
 	useEffect(() => {
 		const fetchStories = async () => {
 			try {
-				const data = await StoryService.getTopStories();
+				const data = await storyService.getTopStories();
 				setStories(data);
 			} catch (error) {
 				// handle error
@@ -26,3 +26,5 @@ export const App = () => {
 		</div>
 	);
 };
+
+export default App;

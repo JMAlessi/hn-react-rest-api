@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import {
-	StoryWrapper,
-	StoryTitle,
-	StoryMeta,
-	StoryMetaElement,
-} from '../styles/StoryStyles';
+import '../styles/StoryStyles.scss';
 import { mapTime } from '../mappers/mapTime';
 
-function StoryService({ storyId }) {
+const StoryService = ({ storyId }) => {
 	const [story, setStory] = useState({});
 
 	useEffect(() => {
 		async function fetchStory() {
-			const data = await fetchStory(storyId);
+			const data = await StoryService.fetchStory(storyId);
 			if (data && data.url) {
 				setStory(data);
 			}
@@ -22,8 +17,11 @@ function StoryService({ storyId }) {
 	}, [storyId]);
 
 	return story && story.url ? (
-		<StoryWrapper data-testid="story">
-			<StoryTitle>
+		<div
+			className="story-wrapper"
+			data-testid="story"
+		>
+			<div className="story-title">
 				<a
 					href={story.url}
 					rel="noopener noreferrer"
@@ -31,20 +29,30 @@ function StoryService({ storyId }) {
 				>
 					{story.title}
 				</a>
-			</StoryTitle>
-			<StoryMeta>
+			</div>
+			<div className="story-meta">
 				<span data-testid="story-by">
-					<StoryMetaElement color="#222">By: </StoryMetaElement>
+					<div
+						className="story-meta-element"
+						color="#222"
+					>
+						By:{' '}
+					</div>
 					{story.by}
 				</span>
 				<span data-testid="story-time">
-					<StoryMetaElement color="#222">Posted: </StoryMetaElement>
+					<div
+						className="story-meta-element"
+						color="#222"
+					>
+						Posted:{' '}
+					</div>
 					{mapTime(story.time)}
 				</span>
-			</StoryMeta>
-		</StoryWrapper>
+			</div>
+		</div>
 	) : null;
-}
+};
 
 StoryService.propTypes = {
 	storyId: PropTypes.number.isRequired,
