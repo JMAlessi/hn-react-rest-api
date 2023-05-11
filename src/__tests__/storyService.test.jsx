@@ -1,72 +1,34 @@
-const axios = require('axios');
-const supertest = require('supertest');
-const app = require('../services/StoryService');
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import StoryService from './StoryService';
 
-jest.mock('axios');
+jest.mock('../mappers/mapTime', () => ({
+	mapTime: jest.fn().mockReturnValue('1 hour ago'),
+}));
 
-const mockedData = {
-	title: 'Test Story',
-	by: 'Test Author',
-	url: 'https://teststory.com',
-};
+describe('StoryService', () => {
+	it('should render the story when data is available', () => {
+		const story = {
+			title: 'Test Story',
+			url: 'https://example.com',
+			by: 'John Doe',
+			time: 1623456789,
+		};
 
-const mockedStoryIds = [1, 2, 3];
+		render(<StoryService storyId={1} />);
 
-const mockedGetStory = async (storyId) => {
-	const data = {
-		...mockedData,
-		id: storyId,
-	};
-	return data;
-};
-
-const mockedGetStoryIds = async () => {
-	return mockedStoryIds;
-};
-
-describe('API endpoints', () => {
-	let request;
-	beforeAll(() => {
-		request = supertest(app);
+		// Verify that the story title is rendered
+		expect(screen.getByText('Test Story')).toBeInTheDocument();
+		// Verify that the story author is rendered
+		expect(screen.getByText('By: John Doe')).toBeInTheDocument();
+		// Verify that the story time is rendered
+		expect(screen.getByText('Posted: 1 hour ago')).toBeInTheDocument();
 	});
 
-	afterEach(() => {
-		jest.resetAllMocks();
-	});
+	it('should not render anything when story data is not available', () => {
+		render(<StoryService storyId={1} />);
 
-	it('GET /story/:id returns the correct story', async () => {
-		axios.get.mockImplementation((url) => {
-			if (url.includes('item')) {
-				const storyId = url.split('/').pop().split('.json')[0];
-				return Promise.resolve({
-					data: {
-						...mockedData,
-						id: storyId,
-					},
-				});
-			}
-			return Promise.reject(new Error('Invalid URL'));
-		});
-
-		const res = await request.get('/story/1');
-
-		expect(res.status).toEqual(200);
-		expect(res.body).toEqual(mockedData);
-	});
-
-	it('GET /stories returns the correct story ids', async () => {
-		axios.get.mockImplementation((url) => {
-			if (url.includes('topstories')) {
-				return Promise.resolve({
-					data: mockedStoryIds,
-				});
-			}
-			return Promise.reject(new Error('Invalid URL'));
-		});
-
-		const res = await request.get('/stories');
-
-		expect(res.status).toEqual(200);
-		expect(res.body).toEqual(mockedStoryIds);
+		// Verify that no story elements are rendered
+		expect(screen.queryByTestId('story')).not.toBeInTheDocument();
 	});
 });

@@ -1,29 +1,30 @@
 import React from 'react';
-import { render, cleanup, waitForElement } from '@testing-library/react';
-import StoryList from '../components/StoryList';
-import { singularStory } from '../fixtures/index';
-import { fetchStoryIds, fetchStory } from '../services/StoryService';
-
-beforeEach(() => {
-	cleanup();
-	jest.resetAllMocks();
-});
+import { render, screen } from '@testing-library/react';
+import StoryList from './StoryList';
 
 jest.mock('../services/StoryService', () => ({
-	fetchStoryIds: jest.fn(),
-	fetchStory: jest.fn(),
+	fetchStoryIds: jest.fn().mockResolvedValue([1, 2, 3]), // Mocking fetchStoryIds to return an array of story ids
 }));
 
-test('renders the StoryList component', async () => {
-	fetchStoryIds.mockImplementation(() => Promise.resolve([1, 2, 3, 4, 5]));
-	fetchStory.mockImplementation(() => Promise.resolve(singularStory));
+jest.mock('./Story', () => ({
+	__esModule: true,
+	default: jest.fn().mockReturnValue(<div data-testid="mock-story" />), // Mocking the Story component to return a div with a test id
+}));
 
-	const { getByTestId, queryAllByTestId } = render(
-		<StoryList storiesPerPage={5} />
-	);
+describe('StoryList', () => {
+	it('should render the correct number of stories', async () => {
+		render(<StoryList storiesPerPage={2} />);
+		// Wait for the story ids to be fetched and rendered
+		await screen.findByTestId('mock-story');
+		// Verify that the correct number of stories are rendered
+		expect(screen.getAllByTestId('mock-story')).toHaveLength(2);
+	});
 
-	await waitForElement(() => [
-		expect(getByTestId('story-list')).toBeTruthy(),
-		expect(queryAllByTestId('story')).toBeTruthy(),
-	]);
+	it('should render the default number of stories if storiesPerPage prop is not provided', async () => {
+		render(<StoryList />);
+		// Wait for the story ids to be fetched and rendered
+		await screen.findByTestId('mock-story');
+		// Verify that the default number of stories (30) are rendered
+		expect(screen.getAllByTestId('mock-story')).toHaveLength(30);
+	});
 });

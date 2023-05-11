@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import '../styles/StoryStyles.scss';
+import { fetchStory } from '../services/StoryService'; // Import the fetchStory function
 import { mapTime } from '../mappers/mapTime';
 
 const Story = ({ storyId }) => {
 	const [story, setStory] = useState({});
 
 	useEffect(() => {
-		async function fetchStory() {
-			const data = await fetchStory(storyId);
+		async function fetchStoryData() {
+			const data = await fetchStory(storyId); // Call fetchStory function with storyId
 			if (data && data.url) {
-				setStory(data);
+				setStory(data); // Set the fetched story data to the state
 			}
 		}
-		fetchStory();
+		fetchStoryData(); // Call the fetchStoryData function when storyId changes
 	}, [storyId]);
 
-	return story && story.url ? (
+	return story && story.url ? ( // Render the story if it has a URL
 		<div
 			className="story-wrapper"
 			data-testid="story"
@@ -27,7 +27,7 @@ const Story = ({ storyId }) => {
 					rel="noopener noreferrer"
 					target="_blank"
 				>
-					{story.title}
+					{story.title} {/* Display the story title */}
 				</a>
 			</div>
 			<div className="story-meta">
@@ -38,7 +38,7 @@ const Story = ({ storyId }) => {
 					>
 						By:
 					</span>
-					{story.by}
+					{story.by} {/* Display the story author */}
 				</span>
 				<span data-testid="story-time">
 					<span
@@ -47,15 +47,15 @@ const Story = ({ storyId }) => {
 					>
 						Posted:
 					</span>
-					{mapTime(story.time)}
+					{mapTime(story.time)} {/* Display the formatted story time */}
 				</span>
 			</div>
 		</div>
-	) : null;
+	) : null; // If story or story URL is not available, render nothing
 };
 
 Story.propTypes = {
-	storyId: PropTypes.number.isRequired,
+	storyId: PropTypes.number.isRequired, // Ensure storyId prop is provided and is a number
 };
 
 export default Story;

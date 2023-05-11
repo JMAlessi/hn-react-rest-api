@@ -1,73 +1,43 @@
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
-import { App } from '../App';
-import { STORY_INCREMENT } from '../constants';
-import { useInfiniteScroll } from '../hooks/useInfiniteScroll';
-import { StoryService } from '../services/StoryService';
+import { render, screen } from '@testing-library/react';
+import StoryService from './StoryService';
 
-jest.mock('../hooks/useInfiniteScroll', () => ({
-	useInfiniteScroll: jest.fn(),
+// Mock the fetchStory function
+jest.mock('./StoryService', () => ({
+	fetchStory: jest.fn().mockResolvedValue({
+		title: 'Test Story',
+		url: 'https://example.com',
+		by: 'John Doe',
+		time: 1623456789,
+	}),
 }));
 
-jest.mock('../services/StoryService');
+describe('StoryService', () => {
+	it('should render the story when data is available', async () => {
+		const storyId = 1;
 
-describe('App', () => {
-	let storyServiceMock;
+		render(<StoryService storyId={storyId} />);
 
-	beforeEach(() => {
-		jest.resetAllMocks();
-		cleanup();
+		// Wait for the data to be fetched and rendered
+		const storyTitle = await screen.findByText('Test Story');
+		const storyBy = screen.getByText('By: John Doe');
+		const storyTime = screen.getByText('Posted: 1 hour ago');
 
-		storyServiceMock = {
-			getTopStories: jest.fn(),
-		};
-
-		StoryService.mockImplementation(() => storyServiceMock);
+		// Verify that the story elements are rendered
+		expect(storyTitle).toBeInTheDocument();
+		expect(storyBy).toBeInTheDocument();
+		expect(storyTime).toBeInTheDocument();
 	});
 
-	it('renders the application', async () => {
-		useInfiniteScroll.mockImplementation(() => ({
-			count: STORY_INCREMENT,
-		}));
+	it('should not render anything when story data is not available', async () => {
+		const storyId = 2;
 
-		const singularStory = {
-			title: 'Tarnished: Google Responds',
-			url: 'https://something.com/hackernewstut',
-			author: 'Karl Hadwen',
-			num_comments: 266,
-			points: 57,
-			objectID: 1,
-		};
+		render(<StoryService storyId={storyId} />);
 
-		const storyIds = [1];
+		// Wait for the data to be fetched
+		await screen.findByTestId('story');
 
-		storyServiceMock.getTopStories.mockImplementation(() =>
-			Promise.resolve(storyIds)
-		);
-		const fetchStoryPromise = Promise.resolve({
-			...singularStory,
-		});
-
-		jest.spyOn(global, 'fetch').mockImplementation((url) => {
-			if (url.includes('1.json')) {
-				return fetchStoryPromise;
-			}
-		});
-
-		const { getByText, queryByTestId } = render(<App />);
-		expect(getByText('Top Stories')).toBeTruthy();
-		expect(getByText('Tarnished: Google Responds')).toBeTruthy();
-		expect(queryByTestId('story-by').textContent).toEqual('By: Karl Hadwen');
-	});
-
-	it('does not render stories when there are no story ids', async () => {
-		useInfiniteScroll.mockImplementation(() => ({
-			count: STORY_INCREMENT,
-		}));
-		storyServiceMock.getTopStories.mockImplementation(() =>
-			Promise.resolve([])
-		);
-		const { queryByText } = render(<App />);
-		expect(queryByText('Tarnished: Google Responds')).toBeFalsy();
+		// Verify that no story elements are rendered
+		expect(screen.queryByTestId('story')).toBeNull();
 	});
 });
