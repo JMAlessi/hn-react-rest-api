@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
-import { fetchStoryIds } from '../services/StoryService';
-import { Story } from '../components/Story';
-import StoriesContainer from './StoriesContainer';
+import { fetchStoryIds } from '../../services/StoryService';
+import { Story } from '../../components/Story';
+import StoriesContainer from '../StoriesContainer';
 
 jest.mock('../services/StoryService', () => ({
 	fetchStoryIds: jest.fn(),

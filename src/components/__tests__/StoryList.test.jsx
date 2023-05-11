@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import StoryList from './StoryList';
+import StoryList from '../StoryList';
 
 jest.mock('../services/StoryService', () => ({
 	fetchStoryIds: jest.fn().mockResolvedValue([1, 2, 3]), // Mocking fetchStoryIds to return an array of story ids

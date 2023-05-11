@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import Story from './Story';
+import Story from '../Story';
 
 // Mock the StoryService module
 jest.mock('../services/StoryService', () => ({

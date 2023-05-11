@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import StoryService from './StoryService';
+import StoryService from '../StoryService';
 
 jest.mock('../mappers/mapTime', () => ({
 	mapTime: jest.fn().mockReturnValue('1 hour ago'),
