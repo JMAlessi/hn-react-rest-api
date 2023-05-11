@@ -1,0 +1,83 @@
+:root {
+	--color-primary: #222;
+	--color-secondary: #eee;
+	--font-family: Arial, Helvetica, sans-serif;
+	--font-size: 18px;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: var(--font-size);
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	line-height: 1;
+	color: var(--color-primary);
+	background-color: var(--color-secondary);
+	font-family: var(--font-family);
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+main.StoriesContainerWrapper {
+	max-width: 1140px;
+	padding: 20px 15px;
+	margin: auto;
+}
+
+$story-wrapper-padding-top: 10px;
+$story-wrapper-margin-bottom: 20px;
+$story-wrapper-border-top: 1px solid #ccc;
+
+$story-title-margin-bottom: 5px;
+$story-title-font-size: 18px;
+$story-title-line-height: 1.8;
+
+$story-meta-font-style: italic;
+$story-meta-flex-direction: row;
+
+$story-meta-element-font-weight: bold;
+$story-meta-element-default-color: red;
+
+.story-wrapper {
+	padding-top: $story-wrapper-padding-top;
+	margin-bottom: $story-wrapper-margin-bottom;
+	border-top: $story-wrapper-border-top;
+
+	&:first-of-type {
+		border-top: 0;
+	}
+
+	&:last-of-type {
+		margin-bottom: 0;
+		padding-bottom: 0;
+	}
+}
+
+.story-title {
+	margin-bottom: $story-title-margin-bottom;
+	font-size: $story-title-font-size;
+	line-height: $story-title-line-height;
+	margin: 0;
+	text-decoration: none;
+
+	a {
+		color: #0080ff;
+		background-color: #fce205;
+		text-decoration: none;
+	}
+
+	a:hover {
+		color: #0f52ba;
+	}
+}
