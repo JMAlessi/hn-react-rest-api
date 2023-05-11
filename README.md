@@ -1,6 +1,6 @@
 # HN-Rest-App
 
-This is an app for displaying Hacker News stories using the Hacker News API.
+This is app displays HN stories using the HN API.
 
 ## Installation
 
@@ -8,10 +8,6 @@ This is an app for displaying Hacker News stories using the Hacker News API.
 2. Install the required packages by running `npm install` in the terminal
 3. Start the app by running `npm start` in the terminal
 4. Open `localhost:3000` in your web browser to view the app
-
-## Usage
-
-In Progress.
 
 ## License
 

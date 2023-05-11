@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import '../styles/StoryStyles.scss';
 import { mapTime } from '../mappers/mapTime';
 
 const StoryService = ({ storyId }) => {
 	const [story, setStory] = useState({});
 
 	useEffect(() => {
-		async function fetchStory() {
-			const data = await StoryService.fetchStory(storyId);
+		async function fetchStoryData() {
+			const data = await fetchStory(storyId);
 			if (data && data.url) {
 				setStory(data);
 			}
 		}
-		fetchStory();
+		fetchStoryData();
 	}, [storyId]);
 
 	return story && story.url ? (
@@ -34,7 +33,7 @@ const StoryService = ({ storyId }) => {
 				<span data-testid="story-by">
 					<div
 						className="story-meta-element"
-						color="#222"
+						style={{ color: '#222' }}
 					>
 						By:{' '}
 					</div>
@@ -43,7 +42,7 @@ const StoryService = ({ storyId }) => {
 				<span data-testid="story-time">
 					<div
 						className="story-meta-element"
-						color="#222"
+						style={{ color: '#222' }}
 					>
 						Posted:{' '}
 					</div>

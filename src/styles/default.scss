@@ -1,3 +1,4 @@
+/* CSS Variables */
 :root {
 	--color-primary: #222;
 	--color-secondary: #eee;
@@ -5,16 +6,19 @@
 	--font-size: 18px;
 }
 
+/* Global Box Sizing */
 *,
 *::before,
 *::after {
 	box-sizing: border-box;
 }
 
+/* HTML Styles */
 html {
 	font-size: var(--font-size);
 }
 
+/* Body Styles */
 body {
 	margin: 0;
 	padding: 0;
@@ -24,30 +28,23 @@ body {
 	font-family: var(--font-family);
 }
 
+/* Unordered List Styles */
 ul {
 	margin: 0;
 	padding: 0;
 }
 
+/* Stories Container Styles */
 main.StoriesContainerWrapper {
 	max-width: 1140px;
 	padding: 20px 15px;
 	margin: auto;
 }
 
+/* Story Wrapper Styles */
 $story-wrapper-padding-top: 10px;
 $story-wrapper-margin-bottom: 20px;
 $story-wrapper-border-top: 1px solid #ccc;
-
-$story-title-margin-bottom: 5px;
-$story-title-font-size: 18px;
-$story-title-line-height: 1.8;
-
-$story-meta-font-style: italic;
-$story-meta-flex-direction: row;
-
-$story-meta-element-font-weight: bold;
-$story-meta-element-default-color: red;
 
 .story-wrapper {
 	padding-top: $story-wrapper-padding-top;
@@ -63,6 +60,11 @@ $story-meta-element-default-color: red;
 		padding-bottom: 0;
 	}
 }
+
+/* Story Title Styles */
+$story-title-margin-bottom: 5px;
+$story-title-font-size: 18px;
+$story-title-line-height: 1.8;
 
 .story-title {
 	margin-bottom: $story-title-margin-bottom;
@@ -81,3 +83,10 @@ $story-meta-element-default-color: red;
 		color: #0f52ba;
 	}
 }
+
+/* Story Meta Styles */
+$story-meta-font-style: italic;
+$story-meta-flex-direction: row;
+
+$story-meta-element-font-weight: bold;
+$story-meta-element-default-color: red;
