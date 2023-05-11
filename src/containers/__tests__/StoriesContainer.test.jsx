@@ -1,26 +1,26 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
-import { fetchStoryIds } from '../../services/StoryService';
+import { fetchStory } from '../../services/StoryService';
 import { Story } from '../../components/Story';
 import StoriesContainer from '../StoriesContainer';
 
-jest.mock('../services/StoryService', () => ({
-	fetchStoryIds: jest.fn(),
+jest.mock('../../services/StoryService', () => ({
+	fetchStory: jest.fn(),
 }));
 
-jest.mock('../components/Story', () => ({
+jest.mock('../../components/Story', () => ({
 	Story: jest.fn(() => <div>Mocked Story Component</div>),
 }));
 
 describe('StoriesContainer', () => {
 	beforeEach(() => {
-		fetchStoryIds.mockClear();
+		fetchStory.mockClear();
 		Story.mockClear();
 	});
 
 	it('should fetch story IDs and render the component', async () => {
 		const mockStoryIds = [1, 2, 3];
-		fetchStoryIds.mockResolvedValueOnce(mockStoryIds);
+		fetchStory.mockResolvedValueOnce(mockStoryIds);
 
 		render(<StoriesContainer />);
 
@@ -28,7 +28,7 @@ describe('StoriesContainer', () => {
 		expect(screen.getByText('HN Stories')).toBeInTheDocument();
 		expect(screen.getByText('Loading...')).toBeInTheDocument();
 
-		// Wait for the fetchStoryIds promise to resolve
+		// Wait for the fetchStory promise to resolve
 		await waitFor(() => {
 			// Verify that the Story component is rendered with the fetched story IDs
 			expect(Story).toHaveBeenCalledTimes(3);
@@ -39,7 +39,7 @@ describe('StoriesContainer', () => {
 	});
 
 	it('should render the "Load More" button', () => {
-		fetchStoryIds.mockResolvedValueOnce([1, 2, 3]);
+		fetchStory.mockResolvedValueOnce([1, 2, 3]);
 
 		render(<StoriesContainer />);
 
@@ -48,7 +48,7 @@ describe('StoriesContainer', () => {
 	});
 
 	it('should increment the count when "Load More" button is clicked', () => {
-		fetchStoryIds.mockResolvedValueOnce([1, 2, 3]);
+		fetchStory.mockResolvedValueOnce([1, 2, 3]);
 
 		render(<StoriesContainer />);
 

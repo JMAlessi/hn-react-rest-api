@@ -3,9 +3,8 @@ import StoryService from './services/StoryService';
 import StoryList from './components/StoryList';
 import './styles/default.scss';
 
-const storyService = new StoryService();
-
 const App = () => {
+	const storyService = new StoryService();
 	// State for storing the list of stories
 	const [stories, setStories] = useState([]);
 
@@ -24,7 +23,7 @@ const App = () => {
 
 		// Fetch stories when the component mounts
 		fetchStories();
-	}, []);
+	}, [storyService]);
 
 	return (
 		<div>

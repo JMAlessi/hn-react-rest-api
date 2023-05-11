@@ -2,11 +2,11 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import StoryList from '../StoryList';
 
-jest.mock('../services/StoryService', () => ({
-	fetchStoryIds: jest.fn().mockResolvedValue([1, 2, 3]), // Mocking fetchStoryIds to return an array of story ids
+jest.mock('../../services/StoryService', () => ({
+	fetchStory: jest.fn().mockResolvedValue([1, 2, 3]), // Mocking fetchStory to return an array of story ids
 }));
 
-jest.mock('./Story', () => ({
+jest.mock('../Story', () => ({
 	__esModule: true,
 	default: jest.fn().mockReturnValue(<div data-testid="mock-story" />), // Mocking the Story component to return a div with a test id
 }));

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchStoryIds } from '../services/StoryService';
+import { fetchStory } from '../services/StoryService';
 import { Story } from '../components/Story';
 
 const StoriesContainer = () => {
@@ -10,7 +10,7 @@ const StoriesContainer = () => {
 	useEffect(() => {
 		// Fetch story IDs and update the state when the component mounts.
 		useEffect(() => {
-			fetchStoryIds().then(setStoryIds);
+			fetchStory().then(setStoryIds);
 		}, []);
 
 		return () => {

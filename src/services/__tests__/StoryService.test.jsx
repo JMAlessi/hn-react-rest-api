@@ -2,17 +2,17 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import StoryService from '../StoryService';
 
-jest.mock('../mappers/mapTime', () => ({
+jest.mock('../../services/StoryService', () => ({
 	mapTime: jest.fn().mockReturnValue('1 hour ago'),
 }));
 
 describe('StoryService', () => {
 	it('should render the story when data is available', () => {
 		const story = {
-			title: 'Test Story',
-			url: 'https://example.com',
+			title: 'Hello World',
+			url: 'https://something.com',
 			by: 'John Doe',
-			time: 1623456789,
+			time: 1677209950,
 		};
 
 		render(<StoryService storyId={1} />);

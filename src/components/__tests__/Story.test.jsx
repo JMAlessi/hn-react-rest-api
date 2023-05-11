@@ -3,17 +3,17 @@ import { render, screen } from '@testing-library/react';
 import Story from '../Story';
 
 // Mock the StoryService module
-jest.mock('../services/StoryService', () => ({
+jest.mock('../../services/StoryService', () => ({
 	fetchStory: jest.fn().mockResolvedValue({
-		title: 'Test Story',
-		url: 'https://example.com',
+		title: 'Hello World',
+		url: 'https://something.com',
 		by: 'John Doe',
-		time: 1623456789,
+		time: 1677209950,
 	}),
 }));
 
 // Mock the mapTime module
-jest.mock('../mappers/mapTime', () => ({
+jest.mock('../../mappers/mapTime', () => ({
 	mapTime: jest.fn().mockReturnValue('1 hour ago'),
 }));
 

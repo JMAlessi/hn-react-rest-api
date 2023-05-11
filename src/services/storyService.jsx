@@ -2,16 +2,23 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { mapTime } from '../mappers/mapTime';
 
-const StoryService = ({ storyId }) => {
-	const [story, setStory] = useState({});
+export async function fetchStory(storyId) {
+	const response = await fetch(
+		`https://hacker-news.firebaseio.com/v0/item/${storyId}.json`
+	);
+	const data = await response.json();
+	return data;
+}
+
+export default function StoryService({ storyId }) {
+	const [story, setStory] = useState(null);
 
 	useEffect(() => {
 		async function fetchStoryData() {
 			const data = await fetchStory(storyId);
-			if (data && data.url) {
-				setStory(data);
-			}
+			setStory(data);
 		}
+
 		fetchStoryData();
 	}, [storyId]);
 
@@ -51,10 +58,8 @@ const StoryService = ({ storyId }) => {
 			</div>
 		</div>
 	) : null;
-};
+}
 
 StoryService.propTypes = {
 	storyId: PropTypes.number.isRequired,
 };
-
-export default StoryService;

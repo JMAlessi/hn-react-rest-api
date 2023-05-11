@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"start": "concurrently \"npm run server\" \"npm run client\" --kill-others",
+		"start": "lsof -ti :3000 -ti :3001 | xargs kill && concurrently \"npm run server\" \"npm run client\"",
 		"client": "react-scripts start",
 		"server": "nodemon server.js",
 		"build": "react-scripts build",

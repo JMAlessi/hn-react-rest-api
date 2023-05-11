@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from '../App';
 
-jest.mock('./services/StoryService', () => ({
+jest.mock('../services/StoryService', () => ({
 	getTopStories: jest.fn().mockResolvedValue([
 		{ id: 1, title: 'Story 1' },
 		{ id: 2, title: 'Story 2' },
