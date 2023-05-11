@@ -4,7 +4,6 @@ import StoryList from './components/StoryList';
 import './styles/default.scss';
 
 const App = () => {
-	const storyService = new StoryService();
 	// State for storing the list of stories
 	const [stories, setStories] = useState([]);
 
@@ -12,6 +11,7 @@ const App = () => {
 		/**
 		 * Fetches the top stories from the story service and updates the state.
 		 */
+		const storyService = new StoryService();
 		const fetchStories = async () => {
 			try {
 				const data = await storyService.getTopStories();
@@ -23,7 +23,7 @@ const App = () => {
 
 		// Fetch stories when the component mounts
 		fetchStories();
-	}, [storyService]);
+	}, []);
 
 	return (
 		<div>
